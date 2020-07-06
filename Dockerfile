@@ -115,6 +115,8 @@ COPY ./install_mod-pitchshifter.sh /home/moduser/install_mod-pitchshifter.sh
 RUN /home/moduser/install_mod-pitchshifter.sh
 COPY ./install_mod-mda.sh /home/moduser/install_mod-mda.sh
 RUN /home/moduser/install_mod-mda.sh
+COPY ./install_mod-gx.sh /home/moduser/install_mod-gx.sh
+RUN /home/moduser/install_mod-gx.sh
 COPY ./postinstall_mod-lv2-data.sh /home/moduser/postinstall_mod-lv2-data.sh
 RUN /home/moduser/postinstall_mod-lv2-data.sh
 
