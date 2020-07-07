@@ -115,6 +115,35 @@ COPY ./install_mod-pitchshifter.sh /home/moduser/install_mod-pitchshifter.sh
 RUN /home/moduser/install_mod-pitchshifter.sh
 COPY ./install_mod-mda.sh /home/moduser/install_mod-mda.sh
 RUN /home/moduser/install_mod-mda.sh
+RUN echo '#!/bin/bash' > /usr/bin/update-desktop-database
+RUN chmod 777 /usr/bin/update-desktop-database
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    intltool \
+    gettext \
+    libsndfile1-dev \
+    libglibmm-2.4-dev \
+    libfftw3-dev \
+    libcurl4-openssl-dev \
+    sassc \
+    fonts-roboto \
+    libgtk-3-dev \
+    gtkmm-3.0-dev \
+    ladspa-sdk \
+    liblrdf0-dev \
+    libboost-system-dev \
+    libboost-iostreams-dev \
+    libzita-convolver-dev \
+    libzita-resampler-dev \
+    gperf \
+    faust \
+    avahi-gobject \
+    bluez \
+    liblo-dev 
+    libeigen3-dev \
+  && rm -rf /var/lib/apt/lists/* \
+  && apt -qyy clean
+
 COPY ./install_mod-gx.sh /home/moduser/install_mod-gx.sh
 RUN /home/moduser/install_mod-gx.sh
 COPY ./postinstall_mod-lv2-data.sh /home/moduser/postinstall_mod-lv2-data.sh
